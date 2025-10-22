@@ -75,11 +75,6 @@ def parse_xml_to_excel(xml_file):
             time = transaction.find('Time').text if transaction.find('Time') is not None else ''
             
             # Patron information
-            lastName = transaction.find('LastName').text if transaction.find('LastName') is not None else ''
-            firstName = transaction.find('FirstName').text if transaction.find('FirstName') is not None else ''
-            middleName = transaction.find('MiddleName').text if transaction.find('MiddleName') is not None else ''
-            patronBarcode = transaction.find('PatronBarcode').text if transaction.find('PatronBarcode') is not None else ''
-            districtID = transaction.find('DistrictID').text if transaction.find('DistrictID') is not None else ''
             patronType = transaction.find('PatronType').text if transaction.find('PatronType') is not None else ''
             patronGradeLevel = transaction.find('PatronGradeLevel').text if transaction.find('PatronGradeLevel') is not None else ''
             patronHomeroom = transaction.find('PatronHomeroom').text if transaction.find('PatronHomeroom') is not None else ''
@@ -100,11 +95,6 @@ def parse_xml_to_excel(xml_file):
                 'Transaction Type': transType,
                 'Date': date,
                 'Time': time,
-                'Last Name': lastName,
-                'First Name': firstName,
-                'Middle Name': middleName,
-                'Patron Barcode': patronBarcode,
-                'District ID': districtID,
                 'Patron Type': patronType,
                 'Grade Level': patronGradeLevel,
                 'Homeroom': patronHomeroom,
@@ -127,8 +117,7 @@ def parse_xml_to_excel(xml_file):
         ws.title = "Transactions"
         
         # Add headers with styling
-        headers = ['Transaction Type', 'Date', 'Time', 'Last Name', 'First Name', 'Middle Name',
-                   'Patron Barcode', 'District ID', 'Patron Type', 'Grade Level', 'Homeroom',
+        headers = ['Transaction Type', 'Date', 'Time', 'Patron Type', 'Grade Level', 'Homeroom',
                    'Title', 'ISBN', 'Material Type', 'Publication Year', 'Copy Barcode', 
                    'Call Number', 'Circulation Type', 'Originator Username']
         
