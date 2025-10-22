@@ -77,7 +77,6 @@ def parse_xml_to_excel(xml_file):
             # Patron information
             patronType = transaction.find('PatronType').text if transaction.find('PatronType') is not None else ''
             patronGradeLevel = transaction.find('PatronGradeLevel').text if transaction.find('PatronGradeLevel') is not None else ''
-            patronHomeroom = transaction.find('PatronHomeroom').text if transaction.find('PatronHomeroom') is not None else ''
             
             # Material information
             title = transaction.find('Title').text if transaction.find('Title') is not None else ''
@@ -87,9 +86,7 @@ def parse_xml_to_excel(xml_file):
             copyBarcode = transaction.find('CopyBarcode').text if transaction.find('CopyBarcode') is not None else ''
             callNumber = transaction.find('CallNumber').text if transaction.find('CallNumber') is not None else ''
             circType = transaction.find('CircType').text if transaction.find('CircType') is not None else ''
-            
-            # System information
-            originatorUsername = transaction.find('OriginatorUsername').text if transaction.find('OriginatorUsername') is not None else ''
+
             
             data_rows.append({
                 'Transaction Type': transType,
@@ -97,7 +94,6 @@ def parse_xml_to_excel(xml_file):
                 'Time': time,
                 'Patron Type': patronType,
                 'Grade Level': patronGradeLevel,
-                'Homeroom': patronHomeroom,
                 'Title': title,
                 'ISBN': isbn,
                 'Material Type': bibType,
@@ -105,7 +101,6 @@ def parse_xml_to_excel(xml_file):
                 'Copy Barcode': copyBarcode,
                 'Call Number': callNumber,
                 'Circulation Type': circType,
-                'Originator Username': originatorUsername
             })
         
         if not data_rows:
@@ -117,9 +112,9 @@ def parse_xml_to_excel(xml_file):
         ws.title = "Transactions"
         
         # Add headers with styling
-        headers = ['Transaction Type', 'Date', 'Time', 'Patron Type', 'Grade Level', 'Homeroom',
+        headers = ['Transaction Type', 'Date', 'Time', 'Patron Type', 'Grade Level',
                    'Title', 'ISBN', 'Material Type', 'Publication Year', 'Copy Barcode', 
-                   'Call Number', 'Circulation Type', 'Originator Username']
+                   'Call Number', 'Circulation Type']
         
         for col_num, header in enumerate(headers, 1):
             cell = ws.cell(row=1, column=col_num, value=header)
